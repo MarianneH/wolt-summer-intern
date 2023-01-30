@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState } from "react";
 import CustomInput from "./CustomInput";
 import { Button } from "./Button";
 
@@ -36,6 +36,8 @@ const StyledDeliveryFee = styled.div`
     border-radius: 15px;
     background-color: #001564;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -114,7 +116,9 @@ function DeliveryFee() {
           Calculate Delivery Fee
         </Button>
       </form>
-      <div className="fees">Delivery Fee: {deliveryFee} €</div>{" "}
+      <div className="fees">
+        <span>Delivery Fee:</span> <span>{deliveryFee.toFixed(2)} €</span>
+      </div>{" "}
       {/*className={styles.fees} */}
     </StyledDeliveryFee>
   );
