@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import CustomInput from "./CustomInput";
 import { Button } from "./Button";
 
@@ -13,7 +13,6 @@ const StyledDeliveryFee = styled.div`
   @media (min-width: 768px) {
     width: 60vw;
   }
-
   margin: 0 auto;
   margin-top: 5vw;
   border: 1px solid rgba(32, 33, 37, 0.12);
@@ -42,26 +41,30 @@ const StyledDeliveryFee = styled.div`
 `;
 
 function DeliveryFee() {
-  const [disabledButton, setDisabledButton] = useState(false);
-  const [deliveryFee, setDeliveryFee] = useState(0);
+  const [disabledButton, setDisabledButton] = useState<boolean>(false);
+  const [deliveryFee, setDeliveryFee] = useState<number>(0);
 
   function isFridayBetween3and7pm(date: Date) {
     const d: Date = new Date(date);
     if (d.getUTCDay() !== 5) {
       return false;
     }
-    const hours = d.getUTCHours();
-    const minutes = d.getUTCMinutes();
-    console.log(hours, minutes);
+    const hours: number = d.getUTCHours();
     return hours >= 15 && hours < 19;
   }
+
+  const cartValueRef = useRef<HTMLInputElement>(null);
+  const distanceRef = useRef<HTMLInputElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+  const timeRef = useRef<HTMLInputElement>(null);
+
   // handle form submit with all delivery fee calculations
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    let cartValue: number = e.target.cartValue.value;
-    let distance: number = e.target.distance.value;
-    let amount: number = e.target.amount.value;
-    let time: Date = e.target.time.value;
+    let cartValue: number = Number(cartValueRef.current!.value);
+    let distance: number = Number(distanceRef.current!.value);
+    let amount: number = Number(amountRef.current!.value);
+    let time: Date = new Date(timeRef.current!.value);
     let surcharge: number = 0;
     let deliveryFeeTemp: number = 0;
 
@@ -98,19 +101,18 @@ function DeliveryFee() {
   return (
     <StyledDeliveryFee>
       <h1>Delivery Fee Calculator</h1>
-      <form onSubmit={handleSubmit}>
-        {/*className={styles.form} */}
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <CustomInput version="cartValue" />
+          <CustomInput version="cartValue" inputRef={cartValueRef} />
         </div>
         <div>
-          <CustomInput version="distance" />
+          <CustomInput version="distance" inputRef={distanceRef} />
         </div>
         <div>
-          <CustomInput version="amount" />
+          <CustomInput version="amount" inputRef={amountRef} />
         </div>
         <div>
-          <CustomInput version="time" />
+          <CustomInput version="time" inputRef={timeRef} />
         </div>
         <Button isClickable={disabledButton ? true : false}>
           Calculate Delivery Fee
@@ -118,8 +120,7 @@ function DeliveryFee() {
       </form>
       <div className="fees">
         <span>Delivery Fee:</span> <span>{deliveryFee.toFixed(2)} €</span>
-      </div>{" "}
-      {/*className={styles.fees} */}
+      </div>
     </StyledDeliveryFee>
   );
 }

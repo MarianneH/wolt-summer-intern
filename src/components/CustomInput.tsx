@@ -79,8 +79,16 @@ const StyledInput = styled.div`
   }
 `;
 
-function CustomInput({ version }: { version: string }) {
-  const [hasValue, setHasValue] = useState(false);
+interface CustomInputProps {
+  version: "distance" | "amount" | "time" | "cartValue";
+  inputRef: React.RefObject<HTMLInputElement>;
+}
+
+export const CustomInput: React.FC<CustomInputProps> = ({
+  version,
+  inputRef,
+}) => {
+  const [hasValue, setHasValue] = useState<boolean>(false);
   function handleInputChange(e: any) {
     if (e.target.value) {
       setHasValue(true);
@@ -98,6 +106,7 @@ function CustomInput({ version }: { version: string }) {
         min="0"
         step={version === "cartValue" ? "0.01" : ""}
         required
+        ref={inputRef}
       ></input>
       <label className={hasValue || version === "time" ? "active" : ""}>
         {version === "distance" && "Delivery Distance in m"}
@@ -113,6 +122,6 @@ function CustomInput({ version }: { version: string }) {
       </div>
     </StyledInput>
   );
-}
+};
 
 export default CustomInput;

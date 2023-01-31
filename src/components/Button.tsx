@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
   isClickable: boolean;
+  children: React.ReactNode;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -26,12 +27,6 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-export const Button = ({
-  children,
-  isClickable,
-}: {
-  children: string;
-  isClickable: boolean;
-}) => {
+export const Button: React.FC<ButtonProps> = ({ children, isClickable }) => {
   return <StyledButton isClickable={isClickable}>{children}</StyledButton>;
 };
