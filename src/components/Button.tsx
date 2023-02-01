@@ -1,32 +1,9 @@
-import styled from "styled-components";
+import { StyledButton } from "../styles/Button.styled";
 
 interface ButtonProps {
-  isClickable: boolean;
   children: React.ReactNode;
 }
 
-const StyledButton = styled.button<ButtonProps>`
-  border: none;
-  align-items: center;
-  justify-content: center;
-  text-rendering: optimizelegibility;
-  font-size: 1rem;
-  text-transform: none;
-  font-weight: 700;
-  max-width: 100%;
-  cursor: ${({ isClickable }) => (isClickable ? "not-allowed" : "pointer")};
-  padding: 0px 1rem;
-  min-height: 2.875rem;
-  border-radius: 0.5rem;
-  color: rgb(255, 255, 255);
-  background-color: ${({ isClickable }) =>
-    isClickable ? "#8ca3b0" : "rgb(0, 157, 224)"};
-  &:hover {
-    background-color: ${({ isClickable }) =>
-      isClickable ? "#8ca3b0" : "rgb(45, 192, 255)"};
-  }
-`;
-
-export const Button: React.FC<ButtonProps> = ({ children, isClickable }) => {
-  return <StyledButton isClickable={isClickable}>{children}</StyledButton>;
+export const Button: React.FC<ButtonProps> = ({ children }) => {
+  return <StyledButton>{children}</StyledButton>;
 };

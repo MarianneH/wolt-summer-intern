@@ -1,57 +1,10 @@
-import styled from "styled-components";
 import React, { useState, useRef } from "react";
 import CustomInput from "./CustomInput";
 import { Button } from "./Button";
+import { StyledDeliveryFee } from "../styles/DeliveryFeeCalculator.styled";
 
-const StyledDeliveryFee = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 95vw;
-  max-width: 30rem;
-  @media (min-width: 768px) {
-    width: 60vw;
-  }
-  margin: 0 auto;
-  margin-top: 5vw;
-  border: 1px solid rgba(32, 33, 37, 0.12);
-  border-radius: 15px;
-  padding: 1rem;
-  & h1 {
-    margin: 2rem auto;
-  }
-  & form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 2rem;
-  }
-  & .fees {
-    color: rgb(255, 255, 255);
-    font-size: 1.5rem;
-    padding: 2rem;
-    border-radius: 15px;
-    background-color: #001564;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
-`;
-
-function DeliveryFee() {
-  const [disabledButton, setDisabledButton] = useState<boolean>(false);
+function DeliveryFeeCalculator() {
   const [deliveryFee, setDeliveryFee] = useState<number>(0);
-
-  function isFridayBetween3and7pm(date: Date) {
-    const d: Date = new Date(date);
-    if (d.getUTCDay() !== 5) {
-      return false;
-    }
-    const hours: number = d.getUTCHours();
-    return hours >= 15 && hours < 19;
-  }
 
   const cartValueRef = useRef<HTMLInputElement>(null);
   const distanceRef = useRef<HTMLInputElement>(null);
@@ -98,6 +51,16 @@ function DeliveryFee() {
     // set final Value for deliveryFee
     deliveryFeeTemp > 15 ? setDeliveryFee(15) : setDeliveryFee(deliveryFeeTemp);
   }
+
+  // function to calculate if given datetime is Fr rush hours
+  function isFridayBetween3and7pm(date: Date) {
+    const d: Date = new Date(date);
+    if (d.getUTCDay() !== 5) {
+      return false;
+    }
+    const hours: number = Number(d.getUTCHours());
+    return hours >= 15 && hours < 19;
+  }
   return (
     <StyledDeliveryFee>
       <h1>Delivery Fee Calculator</h1>
@@ -114,9 +77,7 @@ function DeliveryFee() {
         <div>
           <CustomInput version="time" inputRef={timeRef} />
         </div>
-        <Button isClickable={disabledButton ? true : false}>
-          Calculate Delivery Fee
-        </Button>
+        <Button>Calculate Delivery Fee</Button>
       </form>
       <div className="fees">
         <span>Delivery Fee:</span> <span>{deliveryFee.toFixed(2)} €</span>
@@ -125,4 +86,4 @@ function DeliveryFee() {
   );
 }
 
-export default DeliveryFee;
+export default DeliveryFeeCalculator;

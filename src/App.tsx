@@ -1,12 +1,14 @@
-import "./App.css";
-import DeliveryFee from "./components/DeliveryFeeForm";
+// import "./App.css";
+import DeliveryFeeCalculator from "./components/DeliveryFeeCalculator";
+import { GlobalStyle } from "./styles/GlobalStyles";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div>
-      <DeliveryFee />
+      <GlobalStyle />
+      <DeliveryFeeCalculator />
     </div>
   );
-}
+};
 
 export default App;
