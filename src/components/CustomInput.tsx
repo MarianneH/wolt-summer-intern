@@ -15,8 +15,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   inputRef,
 }) => {
   const [hasValue, setHasValue] = useState<Boolean>(false);
-  const [labelText, setLabelText] = useState(``);
-  const [icon, setIcon] = useState(<></>);
+  const [labelText, setLabelText] = useState<string>(``);
+  const [icon, setIcon] = useState<JSX.Element>(<></>);
 
   // check if input has value to handle label position
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -25,23 +25,27 @@ export const CustomInput: React.FC<CustomInputProps> = ({
 
   // assign the correct label and icon for the version of the input field
   useEffect(() => {
-    switch (version) {
-      case "distance":
-        setLabelText("Delivery Distance in m");
-        setIcon(<RiPinDistanceLine />);
-        break;
-      case "amount":
-        setLabelText("Number of Items");
-        setIcon(<AiOutlineShoppingCart />);
-        break;
-      case "time":
-        setLabelText("Order Time");
-        setIcon(<TbCalendarTime />);
-        break;
-      case "cartValue":
-        setLabelText("Cart Value in €");
-        setIcon(<AiOutlineEuroCircle />);
-    }
+    const labelIcon = new Map();
+    labelIcon.set("distance", {
+      label: "Delivery Distance in m",
+      icon: <RiPinDistanceLine />,
+    });
+    labelIcon.set("amount", {
+      label: "Number of Items",
+      icon: <AiOutlineShoppingCart />,
+    });
+    labelIcon.set("time", {
+      label: "Order Time",
+      icon: <TbCalendarTime />,
+    });
+    labelIcon.set("cartValue", {
+      label: "Cart Value in €",
+      icon: <AiOutlineEuroCircle />,
+    });
+
+    const { label, icon } = labelIcon.get(version);
+    setIcon(icon);
+    setLabelText(label);
   }, [version]);
 
   return (
@@ -49,13 +53,17 @@ export const CustomInput: React.FC<CustomInputProps> = ({
       <input
         onChange={handleInputChange}
         name={version}
+        id={version}
         type={version === "time" ? "datetime-local" : "number"}
         min="0"
         step={version === "cartValue" ? "0.01" : "1"}
         required
         ref={inputRef}
       ></input>
-      <label className={hasValue || version === "time" ? "active" : ""}>
+      <label
+        htmlFor={version}
+        className={hasValue || version === "time" ? "active" : ""}
+      >
         {labelText}
       </label>
       <div>{icon}</div>

@@ -2,6 +2,22 @@ import React, { useState, useRef } from "react";
 import CustomInput from "./CustomInput";
 import { Button } from "./Button";
 import { StyledDeliveryFee } from "../styles/DeliveryFeeCalculator.styled";
+function isFridayBetween3and7pm(date: Date) {
+  const d: Date = new Date(date);
+  if (d.getUTCDay() !== 5) {
+    return false;
+  }
+  const hours: number = Number(d.getUTCHours());
+  return hours >= 15 && hours < 19;
+}
+
+function handleCartValueLessThan10(
+  cartValue: number,
+  surcharge: number
+): number {
+  if (cartValue < 10) surcharge = +(10 - cartValue).toFixed(2);
+  return surcharge;
+}
 
 function DeliveryFeeCalculator() {
   const [deliveryFee, setDeliveryFee] = useState<number>(0);
@@ -24,11 +40,12 @@ function DeliveryFeeCalculator() {
     // handle free delivery over 100€
     if (cartValue >= 100) {
       setDeliveryFee(0);
-      console.log("no fees");
       return;
     }
+
     // if cart value < 10€ round up to 10€
-    if (cartValue < 10) surcharge = +(10 - cartValue).toFixed(2);
+    surcharge = handleCartValueLessThan10(cartValue, surcharge);
+
     // handling distance fee calculation
     let tempDist: number = Math.ceil(distance / 500);
     tempDist > 2
@@ -48,19 +65,12 @@ function DeliveryFeeCalculator() {
     } else {
       deliveryFeeTemp = deliveryFeeTemp + surcharge;
     }
-    // set final Value for deliveryFee
+    // set final Value for deliveryFee not more than 15€
     deliveryFeeTemp > 15 ? setDeliveryFee(15) : setDeliveryFee(deliveryFeeTemp);
   }
 
-  // function to calculate if given datetime is Fr rush hours
-  function isFridayBetween3and7pm(date: Date) {
-    const d: Date = new Date(date);
-    if (d.getUTCDay() !== 5) {
-      return false;
-    }
-    const hours: number = Number(d.getUTCHours());
-    return hours >= 15 && hours < 19;
-  }
+  // function to calculate if given datetime is within Fr rush hours
+
   return (
     <StyledDeliveryFee>
       <h1>Delivery Fee Calculator</h1>
@@ -79,9 +89,7 @@ function DeliveryFeeCalculator() {
         </div>
         <Button>Calculate Delivery Fee</Button>
       </form>
-      <div className="fees">
-        <span>Delivery Fee:</span> <span>{deliveryFee.toFixed(2)} €</span>
-      </div>
+      <div className="fees">Delivery Fee: {deliveryFee.toFixed(2)} €</div>
     </StyledDeliveryFee>
   );
 }

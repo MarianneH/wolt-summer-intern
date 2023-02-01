@@ -9,13 +9,14 @@ This app was build as part of the application process for the WOLT summer intern
 
 # Technologies used
 
-- React, TypeScript, Styled Components
+- React, TypeScript, Styled Components, Testing Library
 
 ## setup done as follows
 
 - `npx create-react-app wolt-assignment-react  --template typescript`
 - `npm i styled-components`
 - `npm i @types/styled-components --save-dev`
+- `npm i @testing-library/react`
 
 ## additional packages
 
