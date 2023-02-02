@@ -3,7 +3,7 @@ import { AiOutlineEuroCircle } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";
 import React, { useEffect, useState } from "react";
-import { StyledInput } from "../styles/CustomInput.styled";
+import { StyledInput } from "./CustomInput.styled";
 
 interface CustomInputProps {
   version: "distance" | "amount" | "time" | "cartValue";

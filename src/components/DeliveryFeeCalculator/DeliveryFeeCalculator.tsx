@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import CustomInput from "./CustomInput";
-import { Button } from "./Button";
-import { StyledDeliveryFee } from "../styles/DeliveryFeeCalculator.styled";
+import CustomInput from "../CustomInput/CustomInput";
+import { Button } from "../Button/Button";
+import { StyledDeliveryFee } from "./DeliveryFeeCalculator.styled";
 function isFridayBetween3and7pm(date: Date) {
   const d: Date = new Date(date);
   if (d.getUTCDay() !== 5) {
