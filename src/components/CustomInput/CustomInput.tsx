@@ -25,7 +25,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         name={version}
         id={version}
         type={version === "time" ? "datetime-local" : "number"}
-        min="0"
+        min={version === "cartValue" ? "0.01" : "1"}
         step={version === "cartValue" ? "0.01" : "1"}
         required
         ref={inputRef}

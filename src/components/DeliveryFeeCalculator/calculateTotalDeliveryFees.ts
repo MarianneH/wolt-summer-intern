@@ -12,7 +12,7 @@ export function calculateDeliveryFees(
 ): number {
   // handle free delivery over 100€
   if (cartValue >= 100) {
-    return 0;
+    return Number(0);
   }
   let min10surcharge: number =
     calculateSurchargeForCartValueLessThan10(cartValue);

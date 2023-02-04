@@ -5,7 +5,7 @@ import { StyledDeliveryFee } from "./DeliveryFeeCalculator.styled";
 import { calculateDeliveryFees } from "./calculateTotalDeliveryFees";
 
 function DeliveryFeeCalculator() {
-  const [deliveryFee, setDeliveryFee] = useState<number>(0);
+  const [deliveryFee, setDeliveryFee] = useState<number | undefined>(undefined);
 
   const cartValueRef = useRef<HTMLInputElement>(null);
   const distanceRef = useRef<HTMLInputElement>(null);
@@ -43,7 +43,11 @@ function DeliveryFeeCalculator() {
         })}
         <Button>Calculate Delivery Fee</Button>
       </form>
-      <div className="fees">Delivery Fee: {deliveryFee.toFixed(2)} €</div>
+      {deliveryFee !== undefined && (
+        <div className="fees" data-testid="fees">
+          Delivery Fee: {deliveryFee?.toFixed(2)} €
+        </div>
+      )}
     </StyledDeliveryFee>
   );
 }

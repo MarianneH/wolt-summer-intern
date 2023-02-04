@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-// import userEvent from "@testing-library/user-event";
 import React from "react";
 import CustomInput from "./CustomInput";
 
@@ -55,7 +54,7 @@ describe("CustomInput", () => {
     );
   });
 
-  it("should render input with step 1 if version is NOT cartValue", () => {
+  it("should render input with step 1 if version is amount", () => {
     render(
       <CustomInput
         version="amount"
@@ -64,6 +63,30 @@ describe("CustomInput", () => {
     );
 
     expect(screen.queryByTestId("amount")?.getAttribute("step")).toEqual("1");
+  });
+
+  it("should render input with min 0.01 if version is cartValue", () => {
+    render(
+      <CustomInput
+        version="cartValue"
+        inputRef={{} as React.RefObject<HTMLInputElement>}
+      />
+    );
+
+    expect(screen.queryByTestId("cartValue")?.getAttribute("min")).toEqual(
+      "0.01"
+    );
+  });
+
+  it("should render input with min 1 if version is amount", () => {
+    render(
+      <CustomInput
+        version="amount"
+        inputRef={{} as React.RefObject<HTMLInputElement>}
+      />
+    );
+
+    expect(screen.queryByTestId("amount")?.getAttribute("min")).toEqual("1");
   });
 
   it("should render input label with className active if value is not empty and version is not time", async () => {

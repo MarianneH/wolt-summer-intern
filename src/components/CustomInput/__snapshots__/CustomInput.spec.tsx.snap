@@ -8,7 +8,7 @@ exports[`CustomInput should render all properties correctly for version distance
     <input
       data-testid="distance"
       id="distance"
-      min="0"
+      min="1"
       name="distance"
       required=""
       step="1"
