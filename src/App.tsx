@@ -1,4 +1,3 @@
-// import "./App.css";
 import DeliveryFeeCalculator from "./components/DeliveryFeeCalculator/DeliveryFeeCalculator";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
