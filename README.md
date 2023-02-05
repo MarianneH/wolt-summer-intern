@@ -4,8 +4,13 @@ This app was build as part of the application process for the WOLT summer intern
 
 # Run the app
 
+- make sure npm is installed
 - run `npm install`
 - run `npm start`
+
+# Run automated tests
+
+- run `npm run test`
 
 # Technologies used
 
