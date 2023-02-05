@@ -7,3 +7,4 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({ children }) => {
   return <StyledButton>{children}</StyledButton>;
 };
+export default Button;

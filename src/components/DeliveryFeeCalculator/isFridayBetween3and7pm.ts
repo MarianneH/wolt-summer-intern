@@ -1,4 +1,4 @@
-function isFridayBetween3and7pm(date: Date) {
+function isFridayBetween3and7pm(date: Date): Boolean {
   const d: Date = new Date(date);
   if (d.getUTCDay() !== 5) {
     return false;
@@ -10,7 +10,7 @@ export function calculateFridayRushFee(
   time: Date,
   deliveryFeeTemp: number,
   surcharge: number
-) {
+): number {
   if (isFridayBetween3and7pm(time)) {
     return +((deliveryFeeTemp + surcharge) * 1.2).toFixed(2);
   }

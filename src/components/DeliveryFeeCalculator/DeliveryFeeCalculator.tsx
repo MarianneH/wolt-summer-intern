@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import { CustomInput } from "../CustomInput";
-import { Button } from "../Button/Button";
+import { Button } from "../Button";
 import { StyledDeliveryFee } from "./DeliveryFeeCalculator.styled";
 import { calculateDeliveryFees } from "./calculateTotalDeliveryFees";
 
-function DeliveryFeeCalculator() {
+export const DeliveryFeeCalculator: React.FC = () => {
   const [deliveryFee, setDeliveryFee] = useState<number | undefined>(undefined);
 
   const cartValueRef = useRef<HTMLInputElement>(null);
@@ -50,6 +50,6 @@ function DeliveryFeeCalculator() {
       )}
     </StyledDeliveryFee>
   );
-}
+};
 
 export default DeliveryFeeCalculator;

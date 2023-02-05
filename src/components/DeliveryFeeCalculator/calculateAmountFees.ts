@@ -1,4 +1,4 @@
-export function calculateAmountFees(amount: number) {
+export function calculateAmountFees(amount: number): number {
   if (amount >= 13) {
     return 1.2 + (amount - 4) * 0.5;
   } else if (amount >= 5) {
