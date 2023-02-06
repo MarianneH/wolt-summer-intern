@@ -12,7 +12,7 @@ https://github.com/woltapp/engineering-summer-intern-2023
 ## Run automated tests
 
 - run `npm run test`
-- (Remark) currently there are warnings popping up for the tests of CustomInput.spec.tsx. `Warning: Unexpected ref object provided for input. Use either a ref-setter function or React.createRef().` - The problem seems to be that the ref is created in the parent component and not directly in this component. This doesn't have any effects on the user as well as on the functionality of the app.
+- (Note) currently there are warnings popping up for the tests of CustomInput.spec.tsx. `Warning: Unexpected ref object provided for input. Use either a ref-setter function or React.createRef().` - The problem seems to be that the ref is created in the parent component and not directly in this component. With more time I would try to solve the problem - but since this doesn't have any effects on the user as well as on the functionality of the app I decided to leave it as is to meet the deadline.
 
 ## Technologies used
 
