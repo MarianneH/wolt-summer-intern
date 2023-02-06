@@ -1,10 +1,10 @@
-import { calculateFridayRushFee } from "./isFridayBetween3and7pm";
+import { calculateFridayRushFee } from "./calculateFridayRushFee";
 import { calculateSurchargeForCartValueLessThan10 } from "./calculateSurchargeForCartValueLessThan10";
 import { calculateAmountFees } from "./calculateAmountFees";
 import { calculateDistanceFees } from "./calculateDistanceFees";
 import { deliveryFeeIsMax15 } from "./deliveryFeeIsMax15";
 
-export function calculateDeliveryFees(
+export function calculateTotalDeliveryFees(
   cartValue: number,
   distance: number,
   amount: number,
@@ -12,7 +12,7 @@ export function calculateDeliveryFees(
 ): number {
   // handle free delivery over 100€
   if (cartValue >= 100) {
-    return Number(0);
+    return 0;
   }
   let min10surcharge: number =
     calculateSurchargeForCartValueLessThan10(cartValue);
