@@ -30,6 +30,14 @@ export const StyledInput = styled.div`
       box-shadow: rgb(0, 157, 224) 0px 0px 0px 0.0625rem;
       transition: border 0.2s linear 0s;
     }
+    & ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  & input[type="number"] {
+    -moz-appearance: textfield;
   }
   & input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     background: transparent;

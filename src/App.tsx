@@ -1,5 +1,5 @@
 import { DeliveryFeeCalculator } from "./components/DeliveryFeeCalculator";
-import { GlobalStyle } from "./styles/GlobalStyles";
+import { GlobalStyle } from "./GlobalStyles";
 
 const App: React.FC = () => {
   return (

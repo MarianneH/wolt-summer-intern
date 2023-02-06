@@ -3,7 +3,7 @@
 exports[`CustomInput should render all properties correctly for version distance 1`] = `
 <div>
   <div
-    class="sc-bcXHqe fyNRQf"
+    class="sc-bcXHqe jGFoAC"
   >
     <input
       data-testid="distance"

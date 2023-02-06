@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { CustomInput } from "../CustomInput";
 import { Button } from "../Button";
 import { StyledDeliveryFee } from "./DeliveryFeeCalculator.styled";
-import { calculateTotalDeliveryFees } from "./calculateTotalDeliveryFees";
+import { totalDeliveryFeeCalculation } from "./functions/totalDeliveryFeeCalculation";
 
 export const DeliveryFeeCalculator: React.FC = () => {
   const [deliveryFee, setDeliveryFee] = useState<number | undefined>(undefined);
@@ -30,7 +30,7 @@ export const DeliveryFeeCalculator: React.FC = () => {
     let time: Date = new Date(timeRef.current!.value);
 
     setDeliveryFee(
-      calculateTotalDeliveryFees(cartValue, distance, amount, time)
+      totalDeliveryFeeCalculation(cartValue, distance, amount, time)
     );
   }
 
