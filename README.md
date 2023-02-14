@@ -1,4 +1,4 @@
-# wolt-summer-intern-assignment
+# Wolt summer intern assignment
 
 This app was build as part of the application process for the Wolt frontend engineering summer internship.
 https://github.com/woltapp/engineering-summer-intern-2023
@@ -12,7 +12,6 @@ https://github.com/woltapp/engineering-summer-intern-2023
 ## Run automated tests
 
 - run `npm run test`
-- (Note) currently there are warnings popping up for the tests of CustomInput.spec.tsx. `Warning: Unexpected ref object provided for input. Use either a ref-setter function or React.createRef().` - The problem seems to be that the ref is created in the parent component and not directly in this component. With more time I would try to solve the problem - but since this doesn't have any effects on the user as well as on the functionality of the app I decided to leave it as is to meet the deadline.
 
 ## Technologies used
 
@@ -55,5 +54,4 @@ These are the rules for the delivery fee calculator:
 
 The following improvements of the application haven't been implemented, but could be in the future.
 
-- handle ref warning from CustomInput.spec.tsx
 - disable button to calculate fee if not all fields are filled
