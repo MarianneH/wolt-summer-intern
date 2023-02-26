@@ -29,6 +29,11 @@ https://github.com/woltapp/engineering-summer-intern-2023
 - react-icons --> https://react-icons.github.io/react-icons/
 - `npm install react-icons --save`
 
+## Scrrenshots
+<img width="1468" alt="wolt_delivery_fee_calculator" src="https://user-images.githubusercontent.com/11974105/221425534-1eef696a-4e09-4efe-824a-974f510b8c8a.png">
+<img width="369" alt="Bildschirmfoto 2023-02-26 um 18 13 04" src="https://user-images.githubusercontent.com/11974105/221425608-f5fc9894-f6cb-4da7-aee4-72b9f9e7a4a3.png">
+
+
 ## Rules for the Delivery Fee Calculator
 
 These are the rules for the delivery fee calculator:
